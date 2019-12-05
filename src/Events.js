@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Products extends Component {
+class Events extends Component {
     render() {
         return (
             <div>
-                {this.props.products.name.first}
+                {this.props.event.name.first}
             </div>
         );
     }
 }
 
-export default Products;
+export default Events;

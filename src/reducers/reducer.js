@@ -6,7 +6,7 @@ const initialState = {
     error: null
 }
 
-export default function productsReducer(state = initialState, action) {
+export default function events(state = initialState, action) {
     switch(action.type) {
         case FETCH_EVENTS_PENDING:
             return {
@@ -30,8 +30,8 @@ export default function productsReducer(state = initialState, action) {
     }
 }
 
-export const getProducts = state => {
-    return state.productsReducer.products
+export const getEvents = state => {
+    return state.events.products
 };
-export const getProductsPending = state => state.productsReducer.pending;
-export const getProductsError = state => state.productsReducer.error;
+export const getEventsPending = state => state.events.pending;
+export const getEventsError = state => state.events.error;

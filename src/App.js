@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import ProductView from "./productView";
+import ProductView from "./EventView";
 
 class App extends Component {
 

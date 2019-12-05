@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fetchEventsAction from './fetchEvents';
-import {getProductsError, getProducts, getProductsPending} from './reducers/reducer';
-import Products from "./Products";
+import {getEventsError, getEvents, getEventsPending} from './reducers/reducer';
+import Events from "./Events";
 
-class ProductView extends Component {
+class EventView extends Component {
     constructor(props) {
         super(props);
     }
@@ -15,14 +15,10 @@ class ProductView extends Component {
     }
 
     render() {
-        const {productsReducer, error, pending} = this.props;
-
+        const {events, error, pending} = this.props;
         if(pending) return <p>...</p>;
         if(error) return <p>Sorry, no data found</p>;
-
-        console.log(productsReducer);
-        const myProductsReducer = productsReducer.map((products)=> <Products products={products}/>);
-
+        const myProductsReducer = events.map((event)=> <Events key={event._id} event={event}/>);
         return (
             <div className='product-list-wrapper'>
                 Event
@@ -34,9 +30,9 @@ class ProductView extends Component {
 
 
 const mapStateToProps = state => ({
-    error: getProductsError(state),
-    productsReducer: getProducts(state),
-    pending: getProductsPending(state)
+    error: getEventsError(state),
+    events: getEvents(state),
+    pending: getEventsPending(state)
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -46,5 +42,5 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProductView);
+)(EventView);
 
