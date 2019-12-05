@@ -7,7 +7,7 @@
   pointer-events: none;
 }
 
-.box-container.col-4 {
+.box-container{
     margin-bottom: 10px;
 }
 

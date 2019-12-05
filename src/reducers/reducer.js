@@ -1,10 +1,14 @@
-import {FETCH_EVENTS_PENDING, FETCH_EVENTS_SUCCESS, FETCH_EVENTS_ERROR} from './../actions/action';
+import {
+	FETCH_EVENTS_PENDING,
+	FETCH_EVENTS_SUCCESS,
+	FETCH_EVENTS_ERROR,
+} from './../actions/action';
 
 const initialState = {
     pending: false,
     data: [],
     error: null
-}
+};
 
 export default function events(state = initialState, action) {
     switch(action.type) {
@@ -30,8 +34,6 @@ export default function events(state = initialState, action) {
     }
 }
 
-export const getEvents = state => {
-    return state.events.data
-};
+export const getEvents = state => state.events.data;
 export const getEventsPending = state => state.events.pending;
 export const getEventsError = state => state.events.error;

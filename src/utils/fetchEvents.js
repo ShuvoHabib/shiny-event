@@ -1,4 +1,8 @@
-import {fetchEventsPending, fetchEventsSuccess, fetchEventsError} from './actions/action';
+import {
+	fetchEventsPending,
+	fetchEventsSuccess,
+	fetchEventsError
+} from '../actions/action';
 
 function fetchEvents() {
     return dispatch => {

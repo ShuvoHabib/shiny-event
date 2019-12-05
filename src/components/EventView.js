@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import fetchEventsAction from './fetchEvents';
-import {getEventsError, getEvents, getEventsPending} from './reducers/reducer';
+import fetchEventsAction from '../utils/fetchEvents';
+import {getEventsError, getEvents, getEventsPending} from '../reducers/reducer';
 import Events from "./Events";
 
 class EventView extends Component {
