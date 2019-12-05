@@ -8,10 +8,10 @@ export function fetchEventsPending() {
     }
 }
 
-export function fetchEventsSuccess(products) {
+export function fetchEventsSuccess(data) {
     return {
         type: FETCH_EVENTS_SUCCESS,
-        products: products
+        data: data
     }
 }
 

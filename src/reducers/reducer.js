@@ -2,7 +2,7 @@ import {FETCH_EVENTS_PENDING, FETCH_EVENTS_SUCCESS, FETCH_EVENTS_ERROR} from './
 
 const initialState = {
     pending: false,
-    products: [],
+    data: [],
     error: null
 }
 
@@ -17,7 +17,7 @@ export default function events(state = initialState, action) {
             return {
                 ...state,
                 pending: false,
-                products: action.products
+                data: action.data
             };
         case FETCH_EVENTS_ERROR:
             return {
@@ -31,7 +31,7 @@ export default function events(state = initialState, action) {
 }
 
 export const getEvents = state => {
-    return state.events.products
+    return state.events.data
 };
 export const getEventsPending = state => state.events.pending;
 export const getEventsError = state => state.events.error;

@@ -10,7 +10,7 @@ class EventView extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchEvents();
     }
 
@@ -20,9 +20,10 @@ class EventView extends Component {
         if(error) return <p>Sorry, no data found</p>;
         const myProductsReducer = events.map((event)=> <Events key={event._id} event={event}/>);
         return (
-            <div className='product-list-wrapper'>
-                Event
-                {myProductsReducer}
+            <div className="container">
+                <div className='row row-eq-height'>
+					{myProductsReducer}
+                </div>
             </div>
         )
     }

@@ -3,7 +3,7 @@ import {fetchEventsPending, fetchEventsSuccess, fetchEventsError} from './action
 function fetchEvents() {
     return dispatch => {
         dispatch(fetchEventsPending());
-        fetch('https://next.json-generator.com/api/json/get/NyNrlJTX8')
+        fetch('https://next.json-generator.com/api/json/get/Vk7OTypQ8')
             .then(res => res.json())
             .then(res => {
                 if(res.error) {
