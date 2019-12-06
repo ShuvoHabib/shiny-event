@@ -16,7 +16,7 @@ class EventView extends Component {
 
     render() {
         const {events, error, pending} = this.props;
-        if(pending) return <p>...</p>;
+        if(pending) return <p>Loading...</p>;
         if(error) return <p>Sorry, no data found</p>;
         const myProductsReducer = events.map((event)=> <Events key={event._id} event={event}/>);
         return (

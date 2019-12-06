@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fetchMembers from '../utils/fetchMembers';
 import {getMembers, getMembersError, getMembersPending} from '../reducers/memberReducer';
-import Member from "./Members";
 
 class MemberView extends Component {
 	state = {
@@ -24,15 +23,15 @@ class MemberView extends Component {
 	
 	render() {
 		const {error, pending} = this.props;
-		if (pending) return <p>...</p>;
+		if (pending) return <p>Loading...</p>;
 		if (error) return <p>Sorry, no data found</p>;
 		const member = this.props.members
-			.map((member) => this.state.deletedIdArr.includes(member._id) ? '': <Member
-				key={member._id}
-				member={member}
-				deletedIdArr={this.state.deletedIdArr}
-				deleteMember={this.deleteMember}
-			/>);
+			.map((member) => (this.state.deletedId !== member._id && !this.state.deletedIdArr.includes(member._id)) && <div className="box-container col-4">
+				<div className="box">
+					<button onClick={() =>this.deleteMember(member._id)}>Delete</button>
+					<div className="name">{member.name.first} {member.name.last}</div>
+				</div>
+			</div>);
 		return (
 			<div className="container">
 				<div className='row row-eq-height'>
