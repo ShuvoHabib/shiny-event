@@ -9,6 +9,7 @@ class MemberView extends Component {
 		members: [],
 		deletedId: null,
 		deletedIdArr: [],
+		sortData: '',
 	};
 	
 	componentDidMount() {
@@ -20,11 +21,28 @@ class MemberView extends Component {
 			deletedId: id
 		}, ()=> this.state.deletedIdArr.push(this.state.deletedId));
 	};
+
+	sortArr = (sortData) => {
+		this.setState({
+			sortData
+		});
+	};
 	
 	render() {
 		const {error, pending} = this.props;
 		if (pending) return <p>Loading...</p>;
 		if (error) return <p>Sorry, no data found</p>;
+		let members  = this.props.members;
+		if(this.state.sortData === 'ageAsc'){
+			members.sort(function(a, b) {
+				return parseFloat(a.age) - parseFloat(b.age);
+			});
+		} else if(this.state.sortData === 'ageDesc'){
+			members.sort(function(a, b) {
+				return parseFloat(b.age) - parseFloat(a.age);
+			});
+		}
+		console.log(this.props.members);
 		const member = this.props.members
 			.map((member) => (this.state.deletedId !== member._id && !this.state.deletedIdArr.includes(member._id)) && <div className="box-container col-4">
 				<div className="box">
@@ -34,7 +52,14 @@ class MemberView extends Component {
 			</div>);
 		return (
 			<div className="container">
-				<div className='row row-eq-height'>
+				<div className="sort-by">
+					<span>Sort by - </span>
+					<p onClick={() => this.sortArr('ageAsc')}>Age:ascending</p>
+					<p onClick={() => this.sortArr('ageDesc')}>Age:descending</p>
+					<p onClick={() => this.sortArr('nameAsc')}>Name:ascending</p>
+					<p onClick={() => this.sortArr('nameDesc')}>Name:descending</p>
+				</div>
+				<div className='m-top-20 row row-eq-height'>
 					{member}
 				</div>
 			</div>
