@@ -41,6 +41,14 @@ class MemberView extends Component {
 			members.sort(function(a, b) {
 				return parseFloat(b.age) - parseFloat(a.age);
 			});
+		} else if(this.state.sortData === 'nameAsc'){
+			members.sort(function(a, b) {
+				return (a.name.first > b.name.first)*2 - 1;
+			});
+		}  else if(this.state.sortData === 'nameDesc'){
+			members.sort(function(a, b) {
+				return (b.name.first > a.name.first)*2 - 1;
+			});
 		}
 		console.log(this.props.members);
 		const member = this.props.members
