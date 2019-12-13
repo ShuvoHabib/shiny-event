@@ -3,6 +3,7 @@ import {
 	FETCH_MEMBERS_SUCCESS,
 	FETCH_MEMBERS_ERROR,
 	ADD_EVENT,
+	SELECTED_MEMBER,
 } from './../actions/action';
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
 };
 
 export default function events(state = initialState, action) {
-	switch(action.type) {
+	switch (action.type) {
 		case FETCH_MEMBERS_PENDING:
 			return {
 				...state,
@@ -25,14 +26,22 @@ export default function events(state = initialState, action) {
 				data: action.data,
 			};
 		case ADD_EVENT:
-			const event = action.event;
-			console.log(event.id, state.data[0]._id);
+			let indexes = [];
+			const eventId = action.event && action.event[0] && action.event[0].events[0];
+			const selectedId = state.selected[0].id;
+			console.log('selected', selectedId);
+			state.data.filter((filter, index) => {
+				return (filter._id === state.selected.id) && indexes.push(index);
+			});
 			return {
 				...state,
-				data: state.data.map(el => ({
-					...el,
-					event: (event.id === state.data[0]._id) && event.id
-				}))
+				selected: [{id:selectedId, events:[...state.selected[0].events, ...[eventId]]}]
+			};
+		case SELECTED_MEMBER:
+			return {
+				...state,
+				// selected: action.event
+				selected: [{id:action.member, events:[]}]
 			};
 		case FETCH_MEMBERS_ERROR:
 			return {
@@ -44,6 +53,8 @@ export default function events(state = initialState, action) {
 			return state;
 	}
 }
+
+// data: {...state.data, ...action.data.data}
 
 export const getMembers = state => state.members.data;
 export const getEvents = state => state.members.event && state.members.event;

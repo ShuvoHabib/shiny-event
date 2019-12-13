@@ -1,18 +1,24 @@
 import React, {Component} from 'react';
+import classNames from 'classnames';
 import {getEvents,} from "../reducers/memberReducer";
 import {bindActionCreators} from "redux";
 import {addEvent} from "../actions/action";
 import {connect} from "react-redux";
 
 class Events extends Component {
-	addEvent = (id) => {
-		console.log(this.props.events.id, 33)
-		this.props.addEvent({id: this.props.events.id, events:[id]});
+	state = {
+		addEvent: false
 	};
-
+	addEvent = (id) => {
+		this.props.addEvent({events: [id]});
+	};
+	
 	render() {
-        return (
-            <div className="box-container col-6">
+		const selected = classNames('box-container col-6', {
+			selected: this.state.selected
+		});
+		return (
+			<div className={selected}>
 				<div className="box">
 					<button onClick={() => this.addEvent(this.props.event._id)}>Add Event</button>
 					<div className="name">{this.props.event.organizer.first} {this.props.event.organizer.last}</div>
@@ -22,9 +28,9 @@ class Events extends Component {
 					<div className="duration">{this.props.event.duration}</div>
 					<div className="capacity">{this.props.event.capacity}</div>
 				</div>
-            </div>
-        );
-    }
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
