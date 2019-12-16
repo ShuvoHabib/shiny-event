@@ -27,15 +27,22 @@ export default function events(state = initialState, action) {
 			};
 		case ADD_EVENT:
 			let indexes = [];
-			const eventId = action.event && action.event[0] && action.event[0].events[0];
+			const addedEvent = state.selected[0].events;
+			const eventId =
+				action.event
+				&& action.event[0]
+				&& action.event[0].events[0];
 			const selectedId = state.selected[0].id;
-			console.log('selected', selectedId);
 			state.data.filter((filter, index) => {
 				return (filter._id === state.selected.id) && indexes.push(index);
 			});
+			if(addedEvent.includes(action.event[0].events[0])) return {...state};
 			return {
 				...state,
-				selected: [{id:selectedId, events:[...state.selected[0].events, ...[eventId]]}]
+				selected:{
+					...state.selected,
+					selected: [{id:selectedId, events:[...state.selected[0].events, ...[eventId]]}]
+				}
 			};
 		case SELECTED_MEMBER:
 			return {
