@@ -25,9 +25,7 @@ class MemberView extends Component {
 			if (members) {
 				this.setState({
 					members: this.props.members,
-				},()=>{
-					console.log('memebrr', this.state.members);
-				})
+				});
 			}
 		}
 	}
