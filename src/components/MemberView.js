@@ -13,6 +13,7 @@ class MemberView extends Component {
 		deletedIdArr: [],
 		sortData: '',
 		selected: false,
+		allEvents: ''
 	};
 	
 	componentDidMount() {
@@ -20,7 +21,7 @@ class MemberView extends Component {
 	}
 	
 	componentDidUpdate(nextProps) {
-		const { members } = this.props
+		const {members} = this.props
 		if (nextProps.members !== members) {
 			if (members) {
 				this.setState({
@@ -37,7 +38,7 @@ class MemberView extends Component {
 	};
 	
 	selectedMember = (id) => {
-		this.setState({selected: id}, () =>{
+		this.setState({selected: id}, () => {
 			this.props.selectedMember(id);
 		});
 	};
@@ -52,8 +53,15 @@ class MemberView extends Component {
 		this.props.locateEvent(id);
 	};
 	
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			allEvents: nextProps.selected && nextProps.selected
+		})
+	}
+	
+	
 	render() {
-		const selected = classNames('box-container col-4',{
+		const selected = classNames('box-container col-4', {
 			'selected': this.state.selected,
 		});
 		const {error, pending} = this.props;
@@ -77,14 +85,22 @@ class MemberView extends Component {
 				return (b.name.first > a.name.first) * 2 - 1;
 			});
 		}
+		
+		console.log('this.allEvents', this.state.allEvents);
+		
 		const member = this.state.members && this.state.members
 			.map((member) => (this.state.deletedId !== member._id && !this.state.deletedIdArr.includes(member._id)) &&
-				<div className="box-container col-4" style={{border: (this.state.selected === member._id) && '1px solid green'}}>
+				<div className="box-container col-4"
+					 style={{border: (this.state.selected === member._id) && '1px solid green'}}>
 					<div className="box">
 						<button onClick={() => this.deleteMember(member._id)}>Delete</button>
 						<button onClick={() => this.selectedMember(member._id)}>Select Member</button>
 						<div className="name">{member.name.first} {member.name.last}</div>
-						<button onClick={() => this.locateEvent(member._id)} >Locate Event</button>
+						{
+							this.state.allEvents
+							&& this.state.allEvents.map((event) => event.events.length > 0 && event.id).includes(member._id)
+							&& <button onClick={() => this.locateEvent(member._id)}>Locate Event</button>
+						}
 					</div>
 				</div>);
 		return (
@@ -108,7 +124,8 @@ class MemberView extends Component {
 const mapStateToProps = state => ({
 	error: getMembersError(state),
 	members: getMembers(state),
-	pending: getMembersPending(state)
+	pending: getMembersPending(state),
+	selected: state.members.selected,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

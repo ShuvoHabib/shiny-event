@@ -27,14 +27,14 @@ export default function events(state = initialState, action) {
             };
 
         case ADD_EVENT:
-            let index = (state.selected.length - 1) || 0;
+            let index = (state.selected && state.selected.length - 1);
             let indexes = [];
-            const addedEvent = state.selected[0].events;
+            const addedEvent = state.selected[index].events;
             const eventId =
                 action.event
                 && action.event[0]
                 && action.event[0].events[0];
-            const selectedId = state.selected[state.selected.length - 1].id;
+            const selectedId = state.selected[index].id;
 
             state.data.filter((filter, index) => {
                 return (filter._id === state.selected.id) && indexes.push(index);
