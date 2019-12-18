@@ -25,7 +25,9 @@ export default function events(state = initialState, action) {
                 pending: false,
                 data: action.data,
             };
+
         case ADD_EVENT:
+            let index = (state.selected.length - 1) || 0;
             let indexes = [];
             const addedEvent = state.selected[0].events;
             const eventId =
@@ -38,21 +40,40 @@ export default function events(state = initialState, action) {
                 return (filter._id === state.selected.id) && indexes.push(index);
             });
             if (addedEvent.includes(action.event[0].events[0])) return {...state};
-			console.log(action.member);
             return {
                 ...state,
-              selected: [{id: selectedId, events: [...state.selected[0].events, ...[eventId]]}]
+                selected: [
+                    ...state.selected.slice(0, index),
+                    {id: selectedId, events: [...state.selected[index].events, ...[eventId]]},
+                ]
             };
-		case SELECTED_MEMBER:
+        case SELECTED_MEMBER:
+            const eventLength = state.selected && state.selected && state.selected.map((y) => y.events && y.events);
+            console.log(eventLength)
+            if(eventLength) {
+                return {
+                    ...state,
+                    selected: [
+                        ...state.selected || [],
+                        {
+                            id: action.member,
+                            events: []
+                        },
+                    ],
+                    lastId: action.member
+                };
+            }
+
             return {
-				...state,
+                ...state,
                 selected: [
                     ...state.selected || [],
                     {
                         id: action.member,
                         events: []
                     },
-                ]
+                ],
+                lastId: action.member
             };
 
         case FETCH_MEMBERS_ERROR:
