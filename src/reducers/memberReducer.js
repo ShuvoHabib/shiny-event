@@ -48,22 +48,6 @@ export default function events(state = initialState, action) {
                 ]
             };
         case SELECTED_MEMBER:
-            const eventLength = state.selected && state.selected && state.selected.map((y) => y.events && y.events);
-            console.log(eventLength)
-            if(eventLength) {
-                return {
-                    ...state,
-                    selected: [
-                        ...state.selected || [],
-                        {
-                            id: action.member,
-                            events: []
-                        },
-                    ],
-                    lastId: action.member
-                };
-            }
-
             return {
                 ...state,
                 selected: [

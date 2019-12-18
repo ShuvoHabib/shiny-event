@@ -48,6 +48,10 @@ class MemberView extends Component {
 		});
 	};
 	
+	locateEvent = (id) => {
+		this.props.locateEvent(id);
+	};
+	
 	render() {
 		const selected = classNames('box-container col-4',{
 			'selected': this.state.selected,
@@ -80,6 +84,7 @@ class MemberView extends Component {
 						<button onClick={() => this.deleteMember(member._id)}>Delete</button>
 						<button onClick={() => this.selectedMember(member._id)}>Select Member</button>
 						<div className="name">{member.name.first} {member.name.last}</div>
+						<button onClick={() => this.locateEvent(member._id)} >Locate Event</button>
 					</div>
 				</div>);
 		return (
