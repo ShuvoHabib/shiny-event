@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fetchMembers from '../utils/fetchMembers';
 import {getMembers, getMembersError, getMembersPending} from '../reducers/memberReducer';
-import {selectedMember} from "../actions/action";
+import {selectedMember, locateEvent} from "../actions/action";
 
 class MemberView extends Component {
 	state = {
@@ -51,6 +51,7 @@ class MemberView extends Component {
 	
 	locateEvent = (id) => {
 		this.props.locateEvent(id);
+		this.props.locateEventId();
 	};
 	
 	componentWillReceiveProps(nextProps) {
@@ -67,7 +68,8 @@ class MemberView extends Component {
 		const {error, pending} = this.props;
 		if (pending) return <p>Loading...</p>;
 		if (error) return <p>Sorry, no data found</p>;
-		let members = this.props.members;
+		let members = this.state.members;
+
 		if (this.state.sortData === 'ageAsc') {
 			members.sort(function (a, b) {
 				return parseFloat(a.age) - parseFloat(b.age);
@@ -86,8 +88,6 @@ class MemberView extends Component {
 			});
 		}
 		
-		console.log('this.allEvents', this.state.allEvents);
-		
 		const member = this.state.members && this.state.members
 			.map((member) => (this.state.deletedId !== member._id && !this.state.deletedIdArr.includes(member._id)) &&
 				<div className="box-container col-4"
@@ -99,7 +99,7 @@ class MemberView extends Component {
 						{
 							this.state.allEvents
 							&& this.state.allEvents.map((event) => event.events.length > 0 && event.id).includes(member._id)
-							&& <button onClick={() => this.locateEvent(member._id)}>Locate Event</button>
+							&& <button onClick={() => this.locateEvent(member._id)}>locate on calendar</button>
 						}
 					</div>
 				</div>);
@@ -131,6 +131,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
 	fetchMembers,
 	selectedMember,
+	locateEventId: locateEvent
 }, dispatch);
 
 export default connect(

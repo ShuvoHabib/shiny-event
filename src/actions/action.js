@@ -6,10 +6,18 @@ export const FETCH_MEMBERS_SUCCESS = 'FETCH_MEMBERS_SUCCESS';
 export const FETCH_MEMBERS_ERROR = 'FETCH_MEMBERS_ERROR';
 export const ADD_EVENT = 'ADD_EVENT';
 export const SELECTED_MEMBER = 'SELECTED_MEMBER';
+export const LOCATE_EVENT = 'LOCATE_EVENT';
 
 export function fetchEventsPending() {
     return {
         type: FETCH_EVENTS_PENDING
+    }
+}
+
+export function locateEvent() {
+    return {
+        type: LOCATE_EVENT,
+        data: true
     }
 }
 

@@ -4,12 +4,14 @@ import {
     FETCH_MEMBERS_ERROR,
     ADD_EVENT,
     SELECTED_MEMBER,
+    LOCATE_EVENT
 } from './../actions/action';
 
 const initialState = {
     pending: false,
     data: [],
-    error: null
+    error: null,
+    isSelected: false
 };
 
 export default function events(state = initialState, action) {
@@ -18,6 +20,11 @@ export default function events(state = initialState, action) {
             return {
                 ...state,
                 pending: true
+            };
+        case LOCATE_EVENT:
+            return {
+                ...state,
+                isSelected: action.data
             };
         case FETCH_MEMBERS_SUCCESS:
             return {
@@ -45,7 +52,8 @@ export default function events(state = initialState, action) {
                 selected: [
                     ...state.selected.slice(0, index),
                     {id: selectedId, events: [...state.selected[index].events, ...[eventId]]},
-                ]
+                ],
+                isSelected: false
             };
         case SELECTED_MEMBER:
             return {
@@ -57,7 +65,7 @@ export default function events(state = initialState, action) {
                         events: []
                     },
                 ],
-                lastId: action.member
+                isSelected: false
             };
 
         case FETCH_MEMBERS_ERROR:

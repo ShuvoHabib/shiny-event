@@ -7,7 +7,8 @@ import Events from "./Events";
 
 class EventView extends Component {
 	state = {
-		allEvents: null
+		allEvents: null,
+		isSelected: true,
 	};
 	
 	componentDidMount() {
@@ -17,13 +18,14 @@ class EventView extends Component {
 	
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			allEvents: nextProps.selected && nextProps.selected
+			allEvents: nextProps.selected && nextProps.selected,
+			isSelected: nextProps.isSelected && nextProps.isSelected
 		})
 	}
 	
 	render() {
 		const {events, error, pending, memberId} = this.props;
-		const {allEvents} = this.state;
+		const {allEvents,isSelected} = this.state;
 		const selectedEventsId = allEvents && allEvents.filter((x) => x.id === memberId);
 		console.log('selectedEventsId', selectedEventsId);
 		if (pending) return <p>Loading...</p>;
@@ -37,7 +39,7 @@ class EventView extends Component {
 			console.log('myEvents', myEvents);
 		}
 		let eventsData;
-		if(memberId){
+		if(memberId && isSelected){
 			eventsData = myEvents.map((event) => <Events key={event._id} event={event}/>);
 		} else {
 			eventsData = events.map((event) => <Events key={event._id} event={event}/>);
@@ -58,6 +60,7 @@ const mapStateToProps = state => ({
 	events: getEvents(state),
 	pending: getEventsPending(state),
 	selected: state.members.selected,
+	isSelected: state.members.isSelected,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
