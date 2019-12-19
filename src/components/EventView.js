@@ -9,6 +9,7 @@ class EventView extends Component {
 	state = {
 		allEvents: null,
 		isSelected: true,
+		selectedMemberId:'',
 	};
 	
 	componentDidMount() {
@@ -19,14 +20,15 @@ class EventView extends Component {
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			allEvents: nextProps.selected && nextProps.selected,
-			isSelected: nextProps.isSelected && nextProps.isSelected
+			isSelected: nextProps.isSelected && nextProps.isSelected,
+			selectedMemberId: nextProps.selectedMemberId && nextProps.selectedMemberId
 		})
 	}
 	
 	render() {
-		const {events, error, pending, memberId} = this.props;
+		const {events, error, pending, selectedMemberId} = this.props;
 		const {allEvents,isSelected} = this.state;
-		const selectedEventsId = allEvents && allEvents.filter((x) => x.id === memberId);
+		const selectedEventsId = allEvents && allEvents.filter((x) => x.id === selectedMemberId);
 		console.log('selectedEventsId', selectedEventsId);
 		if (pending) return <p>Loading...</p>;
 		if (error) return <p>Sorry, no data found</p>;
@@ -39,7 +41,7 @@ class EventView extends Component {
 			console.log('myEvents', myEvents);
 		}
 		let eventsData;
-		if(memberId && isSelected){
+		if(selectedMemberId && isSelected){
 			eventsData = myEvents.map((event) => <Events key={event._id} event={event}/>);
 		} else {
 			eventsData = events.map((event) => <Events key={event._id} event={event}/>);
@@ -61,6 +63,7 @@ const mapStateToProps = state => ({
 	pending: getEventsPending(state),
 	selected: state.members.selected,
 	isSelected: state.members.isSelected,
+	selectedMemberId: state.members.selectedMemberId,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -34,7 +34,10 @@ export default function events(state = initialState, action) {
             };
 
         case ADD_EVENT:
-            let index = (state.selected && state.selected.length - 1);
+            console.log(state.selected, state.selectedMemberId);
+            const index = state.selected && state.selected.findIndex((select)=>select.id === state.selectedMemberId);
+            // console.log(filterId);
+            // let index = (state.selected && state.selected.length - 1);
             let indexes = [];
             const addedEvent = state.selected[index].events;
             const eventId =
@@ -56,6 +59,12 @@ export default function events(state = initialState, action) {
                 isSelected: false
             };
         case SELECTED_MEMBER:
+            const selectedMemberId = state.selected && state.selected.map((select)=>select.id);
+            if (selectedMemberId && selectedMemberId.includes(action.member)) return {
+                ...state,
+                selectedMemberId: action.member,
+                isSelected: false,
+            };
             return {
                 ...state,
                 selected: [
@@ -65,7 +74,8 @@ export default function events(state = initialState, action) {
                         events: []
                     },
                 ],
-                isSelected: false
+                isSelected: false,
+                selectedMemberId: action.member
             };
 
         case FETCH_MEMBERS_ERROR:
