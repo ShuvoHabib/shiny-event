@@ -9,8 +9,11 @@
   pointer-events: none;
 }
 
-.box-container{
+.box-container {
     margin-bottom: 10px;
+}
+.box-container.events {
+    min-width: 96%;
 }
 
 .box{

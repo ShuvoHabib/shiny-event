@@ -93,8 +93,8 @@ class MemberView extends Component {
 				<div className="box-container col-4"
 					 style={{border: (this.state.selected === member._id) && '1px solid green'}}>
 					<div className="box">
-						<button onClick={() => this.deleteMember(member._id)}>Delete</button>
 						<button onClick={() => this.selectedMember(member._id)}>Select Member</button>
+						<button onClick={() => this.deleteMember(member._id)}>Delete</button>
 						<div className="name">{member.name.first} {member.name.last}</div>
 						{
 							this.state.allEvents

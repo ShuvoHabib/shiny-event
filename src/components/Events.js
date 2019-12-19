@@ -20,20 +20,18 @@ class Events extends Component {
     };
 
     render() {
-        const selected = classNames('box-container', {
+        const selected = classNames('box-container events', {
             selected: this.state.selected,
             hidden: !this.state.display,
         });
         return (
             <div className="col-6">
                 <div className="row">
-                    <div>
-                        <button onClick={this.toggleEvent}>Toggle Event</button>
-                    </div>
+                    <button onClick={this.toggleEvent}>Toggle Event</button>
                     <div className={selected}>
                         <div className="box">
                             {this.props.selected &&
-                            	<button onClick={() => this.addEvent(this.props.event._id)}>Add Event</button>
+                            <button onClick={() => this.addEvent(this.props.event._id)}>Add Event</button>
                             }
                             <div
                                 className="name">{this.props.event.organizer.first} {this.props.event.organizer.last}</div>
