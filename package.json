@@ -1,6 +1,6 @@
 {
   "name": "shiny-event",
-  "homepage" : "http://shuvohabib.github.io/shinyevent",
+  "homepage" : "http://shuvohabib.github.io/shiny-event",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
