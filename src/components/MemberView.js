@@ -107,10 +107,11 @@ class MemberView extends Component {
 			<div className="container">
 				<div className="sort-by">
 					<span>Sort by - </span>
-					<p onClick={() => this.sortArr('ageAsc')}>Age:ascending</p>
-					<p onClick={() => this.sortArr('ageDesc')}>Age:descending</p>
-					<p onClick={() => this.sortArr('nameAsc')}>Name:ascending</p>
-					<p onClick={() => this.sortArr('nameDesc')}>Name:descending</p>
+
+					<button onClick={() => this.sortArr('ageAsc')}>Age:ascending</button>
+					<button onClick={() => this.sortArr('ageDesc')}>Age:descending</button>
+					<button onClick={() => this.sortArr('nameAsc')}>Name:ascending</button>
+					<button onClick={() => this.sortArr('nameDesc')}>Name:descending</button>
 				</div>
 				<div className='m-top-20 row row-eq-height'>
 					{member}
