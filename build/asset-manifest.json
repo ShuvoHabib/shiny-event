@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/shiny-event/static/css/main.c545f398.chunk.css",
-    "main.js": "/shiny-event/static/js/main.4264ed1f.chunk.js",
-    "main.js.map": "/shiny-event/static/js/main.4264ed1f.chunk.js.map",
+    "main.js": "/shiny-event/static/js/main.25b42cb8.chunk.js",
+    "main.js.map": "/shiny-event/static/js/main.25b42cb8.chunk.js.map",
     "runtime-main.js": "/shiny-event/static/js/runtime-main.0f2cb7a5.js",
     "runtime-main.js.map": "/shiny-event/static/js/runtime-main.0f2cb7a5.js.map",
     "static/js/2.d77e92d1.chunk.js": "/shiny-event/static/js/2.d77e92d1.chunk.js",
     "static/js/2.d77e92d1.chunk.js.map": "/shiny-event/static/js/2.d77e92d1.chunk.js.map",
     "index.html": "/shiny-event/index.html",
-    "precache-manifest.c4fd2af7286d35de7ad04904e9a3841d.js": "/shiny-event/precache-manifest.c4fd2af7286d35de7ad04904e9a3841d.js",
+    "precache-manifest.b200874ef5136adf53fec474fb23d7b8.js": "/shiny-event/precache-manifest.b200874ef5136adf53fec474fb23d7b8.js",
     "service-worker.js": "/shiny-event/service-worker.js",
     "static/css/main.c545f398.chunk.css.map": "/shiny-event/static/css/main.c545f398.chunk.css.map",
     "static/js/2.d77e92d1.chunk.js.LICENSE": "/shiny-event/static/js/2.d77e92d1.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.0f2cb7a5.js",
     "static/js/2.d77e92d1.chunk.js",
     "static/css/main.c545f398.chunk.css",
-    "static/js/main.4264ed1f.chunk.js"
+    "static/js/main.25b42cb8.chunk.js"
   ]
 }

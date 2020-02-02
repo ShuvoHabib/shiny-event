@@ -96,6 +96,7 @@ class MemberView extends Component {
 						<button onClick={() => this.selectedMember(member._id)}>Select Member</button>
 						<button onClick={() => this.deleteMember(member._id)}>Delete</button>
 						<div className="name">{member.name.first} {member.name.last}</div>
+						<div className="name">Age: {member.age}</div>
 						{
 							this.state.allEvents
 							&& this.state.allEvents.map((event) => event.events.length > 0 && event.id).includes(member._id)

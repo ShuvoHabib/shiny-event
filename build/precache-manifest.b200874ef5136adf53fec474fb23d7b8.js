@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "826695a7ea9152da2df23f4f517d4c40",
+    "revision": "d1d392244ece644202cd21a850f54d40",
     "url": "/shiny-event/index.html"
   },
   {
-    "revision": "c3a0ba9b351874797c81",
+    "revision": "1b481830e8916113488a",
     "url": "/shiny-event/static/css/main.c545f398.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shiny-event/static/js/2.d77e92d1.chunk.js.LICENSE"
   },
   {
-    "revision": "c3a0ba9b351874797c81",
-    "url": "/shiny-event/static/js/main.4264ed1f.chunk.js"
+    "revision": "1b481830e8916113488a",
+    "url": "/shiny-event/static/js/main.25b42cb8.chunk.js"
   },
   {
     "revision": "8d5c9828cf6473911ead",
